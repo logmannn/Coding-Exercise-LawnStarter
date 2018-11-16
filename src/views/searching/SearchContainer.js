@@ -36,6 +36,8 @@ const RadioContainer = styled.div`
 
 const Radio = styled.form`
   margin-right: 30px;
+
+  white-space: nowrap;
 `;
 
 const RadioInput = styled.input`
@@ -80,16 +82,22 @@ const SearchInput = styled.input`
   }
 `;
 
+const SearchButton = styled.button`
+  max-width: 350px;
+`;
+
 export default class SearchContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: "people"
+      category: "people",
+      search: "",
+      searching: false
     };
   }
 
   render() {
-    const { category } = this.state;
+    const { category, search, searching } = this.state;
 
     return (
       <Search className="box">
@@ -125,6 +133,18 @@ export default class SearchContainer extends Component {
               : "The Empire Strikes Back, Return of the Jedi")
           }
         />
+        <SearchButton
+          className="searchButton"
+          type="submit"
+          style={{
+            backgroundColor: search === "" && "#c4c4c4",
+            cursor: search === "" && "not-allowed"
+          }}
+          onClick={this.apiRequest}
+          disabled={search === ""}
+        >
+          SEARCH{searching && "ING..."}
+        </SearchButton>
       </Search>
     );
   }
