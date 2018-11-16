@@ -54,12 +54,28 @@ export default class Results extends Component {
   render() {
     const { results, category, search, searching } = this.props;
 
+    let filteredResults;
+
+    const regex = new RegExp(search.toLowerCase(), "g");
+
+    if (search === "") {
+      filteredResults = results;
+    } else if (category === "people") {
+      filteredResults = results.filter(item =>
+        regex.test(item.name.toLowerCase())
+      );
+    } else if (category === "films") {
+      filteredResults = results.filter(item =>
+        regex.test(item.title.toLowerCase())
+      );
+    }
+
     return (
       <Result className="box">
         <H1>Results</H1>
         <ResultItems>
-          {results.length > 0 &&
-            results.map((result, i) => (
+          {filteredResults.length > 0 &&
+            filteredResults.map((result, i) => (
               <H2 key={i}>
                 <ResultText>
                   {category === "people" ? result.name : result.title}
