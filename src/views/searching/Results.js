@@ -8,6 +8,12 @@ const Result = styled.div`
   min-height: 578px;
 
   border: 1px solid black;
+
+  @media only screen and (max-width: 680px) {
+    width: 100%;
+
+    margin-bottom: 30px;
+  }
 `;
 
 export default class Results extends Component {

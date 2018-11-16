@@ -9,6 +9,12 @@ const Search = styled.div`
   border: 1px solid black;
 
   min-height: 230px;
+
+  @media only screen and (max-width: 680px) {
+    width: 100%;
+
+    margin-bottom: 30px;
+  }
 `;
 
 export default class SearchContainer extends Component {
