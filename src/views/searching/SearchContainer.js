@@ -99,6 +99,12 @@ export default class SearchContainer extends Component {
   render() {
     const { category, search, searching } = this.state;
 
+    this.onChangeSearchInput = value => {
+      this.setState({
+        search: value
+      });
+    };
+
     return (
       <Search className="box">
         <Text>What are you searching for?</Text>
@@ -132,6 +138,7 @@ export default class SearchContainer extends Component {
               ? "Chewbacca, Yoda, Boba Fett"
               : "The Empire Strikes Back, Return of the Jedi")
           }
+          onChange={e => this.onChangeSearchInput(e.target.value)}
         />
         <SearchButton
           className="searchButton"
