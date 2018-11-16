@@ -8,8 +8,6 @@ const Search = styled.div`
 
   border: 1px solid black;
 
-  min-height: 230px;
-
   @media only screen and (max-width: 680px) {
     width: calc(100% - 62px);
 
@@ -105,6 +103,13 @@ export default class SearchContainer extends Component {
       });
     };
 
+    this.apiRequest = () => {
+      if (search !== "") {
+        this.props.apiRequest(category, search);
+        this.setState({ searching: true });
+      }
+    };
+
     return (
       <Search className="box">
         <Text>What are you searching for?</Text>
@@ -124,8 +129,8 @@ export default class SearchContainer extends Component {
               type="radio"
               name="Movies"
               value="Movies"
-              checked={category === "movies"}
-              onChange={() => this.setState({ category: "movies" })}
+              checked={category === "films"}
+              onChange={() => this.setState({ category: "films" })}
             />
             <Label>Movies</Label>
           </Radio>
@@ -135,10 +140,11 @@ export default class SearchContainer extends Component {
           placeholder={
             "e.g. " +
             (category === "people"
-              ? "Chewbacca, Yoda, Boba Fett"
+              ? "Luke Skywalker, C-3PO, R2-D2"
               : "The Empire Strikes Back, Return of the Jedi")
           }
           onChange={e => this.onChangeSearchInput(e.target.value)}
+          onKeyPress={e => e.key === "Enter" && this.apiRequest()}
         />
         <SearchButton
           className="searchButton"

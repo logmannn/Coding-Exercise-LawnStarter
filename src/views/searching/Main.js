@@ -34,11 +34,39 @@ const Container = styled.div`
 // const Results = styled.div``;
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: [],
+      search: "",
+      searching: false
+    };
+  }
+
   render() {
+    const { search, results, searching } = this.state;
+
+    this.apiRequest = (category, search) => {
+      this.setState({ searching: true });
+      return fetch(`https://swapi.co/api/${category}/`)
+        .then(response => response.json())
+        .then(responseJson => {
+          this.setState({
+            results: responseJson.results,
+            search,
+            category,
+            searching: false
+          });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    };
+
     return (
       <Main>
         <Container>
-          <SearchContainer />
+          <SearchContainer apiRequest={this.apiRequest} searching={searching} />
           <Results />
         </Container>
       </Main>
