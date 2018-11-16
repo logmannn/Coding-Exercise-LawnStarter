@@ -45,3 +45,19 @@ body {
 .searchButton:hover {
   background-color: #089954;
 }
+
+.row {
+  margin-right: 100px;
+
+  min-height: 267px;
+}
+
+@media only screen and (max-width: 680px) {
+  .row {
+    min-height: auto;
+
+    margin-bottom: 18px;
+
+    margin-right: 0;
+  }
+}
