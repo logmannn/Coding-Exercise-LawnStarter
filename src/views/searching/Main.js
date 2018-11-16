@@ -30,21 +30,19 @@ const Container = styled.div`
   }
 `;
 
-// const SearchContainer = styled.div``;
-// const Results = styled.div``;
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       results: [],
       search: "",
-      searching: false
+      searching: false,
+      category: ""
     };
   }
 
   render() {
-    const { search, results, searching } = this.state;
+    const { search, results, searching, category } = this.state;
 
     this.apiRequest = (category, search) => {
       this.setState({ searching: true });
@@ -67,7 +65,12 @@ export default class Home extends Component {
       <Main>
         <Container>
           <SearchContainer apiRequest={this.apiRequest} searching={searching} />
-          <Results />
+          <Results
+            results={results}
+            search={search}
+            category={category}
+            searching={searching}
+          />
         </Container>
       </Main>
     );

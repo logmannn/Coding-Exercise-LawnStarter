@@ -95,7 +95,9 @@ export default class SearchContainer extends Component {
   }
 
   render() {
-    const { category, search, searching } = this.state;
+    const { category, search } = this.state;
+
+    const { searching } = this.props;
 
     this.onChangeSearchInput = value => {
       this.setState({
