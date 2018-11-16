@@ -79,24 +79,32 @@ const Alink = styled.div`
 const SearchButton = styled(Link)`
   max-width: 187px;
 
-  position: absolute;
-  left: 30px;
-  bottom: 30px;
+  margin-top: 18px;
+
+  position: relative;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   text-decoration: none;
+`;
 
-  @media only screen and (max-width: 680px) {
-    position: relative;
+const StatusText = styled.div`
+  color: #c4c4c4;
 
-    left: 0;
-    bottom: 0;
+  font-size: 14px;
+  font-weight: bold;
 
-    margin-top: 18px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 100%;
+
+  height: 100%;
+  max-height: 100%;
 `;
 
 class Details extends Component {
@@ -112,7 +120,6 @@ class Details extends Component {
 
   componentWillMount() {
     if (typeof this.props.location.data === "undefined") {
-      // this.props.history.push("/");
       let url = `https://swapi.co/api/${
         this.props.match.params.category === "people" ? "people" : "films"
       }/${this.props.match.params.id}`;
@@ -283,7 +290,9 @@ class Details extends Component {
             </div>
           </Detail>
         ) : (
-          <Detail className="box">loading</Detail>
+          <Detail className="box">
+            <StatusText>Searching...</StatusText>
+          </Detail>
         )}
       </Main>
     );

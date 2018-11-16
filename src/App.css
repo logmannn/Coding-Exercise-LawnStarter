@@ -49,7 +49,7 @@ body {
 .row {
   margin-right: 100px;
 
-  min-height: 267px;
+  min-height: 249px;
 }
 
 @media only screen and (max-width: 680px) {
