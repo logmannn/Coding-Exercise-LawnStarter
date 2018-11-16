@@ -21,6 +21,10 @@ const Detail = styled.div`
   min-height: 355px;
 
   position: relative;
+
+  @media only screen and (max-width: 680px) {
+    min-height: auto;
+  }
 `;
 
 const H1 = styled.div`
@@ -70,6 +74,29 @@ const LinkText = styled(Link)`
 
 const Alink = styled.div`
   display: inline-block;
+`;
+
+const SearchButton = styled(Link)`
+  max-width: 187px;
+
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+
+  @media only screen and (max-width: 680px) {
+    position: relative;
+
+    left: 0;
+    bottom: 0;
+
+    margin-top: 18px;
+  }
 `;
 
 class Details extends Component {
@@ -200,6 +227,16 @@ class Details extends Component {
                   })}
               </Row>
             </Info>
+            <div>
+              <SearchButton
+                className="searchButton"
+                to={{
+                  pathname: "/"
+                }}
+              >
+                BACK TO SEARCH
+              </SearchButton>
+            </div>
           </Detail>
         ) : (
           <Detail className="box">loading</Detail>
