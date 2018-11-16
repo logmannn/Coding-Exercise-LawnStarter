@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import Loader from "react-loader-spinner";
+
 const Main = styled.div`
   display: flex;
 
@@ -291,7 +293,9 @@ class Details extends Component {
           </Detail>
         ) : (
           <Detail className="box">
-            <StatusText>Loading...</StatusText>
+            <StatusText>
+              <Loader type="Bars" color="#0ab463" height={80} width={80} />
+            </StatusText>
           </Detail>
         )}
       </Main>

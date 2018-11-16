@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import Loader from "react-loader-spinner";
+
 const Result = styled.div`
   flex: 3;
 
@@ -144,7 +146,9 @@ class Results extends Component {
                   Movies.
                 </StatusText>
               ) : (
-                <StatusText>Searching...</StatusText>
+                <StatusText>
+                  <Loader type="Bars" color="#0ab463" height={80} width={80} />
+                </StatusText>
               )}
             </>
           )}
