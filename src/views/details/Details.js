@@ -291,7 +291,7 @@ class Details extends Component {
           </Detail>
         ) : (
           <Detail className="box">
-            <StatusText>Searching...</StatusText>
+            <StatusText>Loading...</StatusText>
           </Detail>
         )}
       </Main>
