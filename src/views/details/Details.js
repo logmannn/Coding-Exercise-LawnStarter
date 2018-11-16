@@ -104,13 +104,31 @@ class Details extends Component {
     super(props);
     this.state = {
       extraData: [],
-      loading: true
+      loading: true,
+      category: "",
+      data: []
     };
   }
 
   componentWillMount() {
     if (typeof this.props.location.data === "undefined") {
-      this.props.history.push("/");
+      // this.props.history.push("/");
+      let url = `https://swapi.co/api/${
+        this.props.match.params.category === "people" ? "people" : "films"
+      }/${this.props.match.params.id}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(responseJson => {
+          this.setState({
+            category: this.props.match.params.category,
+            data: responseJson
+          });
+          return responseJson;
+        })
+        .catch(error => {
+          console.error(error);
+        });
     } else if (this.state.loading) {
       this.mounted();
     }
@@ -124,9 +142,18 @@ class Details extends Component {
 
   mounted() {
     let tempData = [];
-    if (this.props.location.category === "people") {
-      for (let i = 0; i < this.props.location.data.films.length; i++) {
-        fetch(this.props.location.data.films[i])
+
+    let category = this.props.location.category;
+    let currentData = this.props.location.data;
+
+    if (typeof currentData === "undefined") {
+      category = this.state.category;
+      currentData = this.state.data;
+    }
+
+    if (category === "people") {
+      for (let i = 0; i < currentData.films.length; i++) {
+        fetch(currentData.films[i])
           .then(response => response.json())
           .then(responseJson => {
             this.setState({
@@ -139,9 +166,9 @@ class Details extends Component {
           });
       }
       this.setState({ extraData: tempData });
-    } else if (this.props.location.category === "films") {
-      for (let i = 0; i < this.props.location.data.characters.length; i++) {
-        fetch(this.props.location.data.characters[i])
+    } else if (category === "films" || category === "movies") {
+      for (let i = 0; i < currentData.characters.length; i++) {
+        fetch(currentData.characters[i])
           .then(response => response.json())
           .then(responseJson => {
             this.setState({
@@ -159,8 +186,13 @@ class Details extends Component {
   }
 
   render() {
-    const { category, data } = this.props.location;
+    let { category, data } = this.props.location;
     const { extraData, loading } = this.state;
+
+    if (typeof data === "undefined") {
+      category = this.state.category;
+      data = this.state.data;
+    }
 
     return (
       <Main>
@@ -213,30 +245,34 @@ class Details extends Component {
                       </Alink>
                     );
                   })}
-                {category === "films" &&
-                  extraData.map((character, i) => {
-                    return (
-                      <Alink key={i}>
-                        <LinkText
-                          onClick={() => this.setState({ loading: true })}
-                          to={{
-                            pathname: `/details/people/${character.url
-                              .replace(
-                                /https:\/\/swapi\.co\/api\/people\//g,
-                                ""
-                              )
-                              .replace(/https:\/\/swapi\.co\/api\/films\//g, "")
-                              .replace(/\//g, "")}`,
-                            data: character,
-                            category: "people"
-                          }}
-                        >
-                          {character.name}
-                        </LinkText>
-                        ,&nbsp;
-                      </Alink>
-                    );
-                  })}
+                {category === "films" ||
+                  (category === "movies" &&
+                    extraData.map((character, i) => {
+                      return (
+                        <Alink key={i}>
+                          <LinkText
+                            onClick={() => this.setState({ loading: true })}
+                            to={{
+                              pathname: `/details/people/${character.url
+                                .replace(
+                                  /https:\/\/swapi\.co\/api\/people\//g,
+                                  ""
+                                )
+                                .replace(
+                                  /https:\/\/swapi\.co\/api\/films\//g,
+                                  ""
+                                )
+                                .replace(/\//g, "")}`,
+                              data: character,
+                              category: "people"
+                            }}
+                          >
+                            {character.name}
+                          </LinkText>
+                          ,&nbsp;
+                        </Alink>
+                      );
+                    }))}
               </Row>
             </Info>
             <div>
