@@ -18,6 +18,6 @@ const Result = styled.div`
 
 export default class Results extends Component {
   render() {
-    return <Result>Results</Result>;
+    return <Result className="box">Results</Result>;
   }
 }
