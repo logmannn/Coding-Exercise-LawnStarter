@@ -4,11 +4,14 @@ import Main from "./views/searching/Main";
 import Details from "./views/details/Details";
 import "./App.css";
 
+import { Header } from "./Header";
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
+          <Header />
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/details" component={Details} />
