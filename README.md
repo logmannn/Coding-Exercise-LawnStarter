@@ -15,4 +15,5 @@ Bonus Features:
 <ul>
   <li>Responsive</li>
   <li>Ability to refresh</li>
+  <li>Loading animations</li>
 </ul>
