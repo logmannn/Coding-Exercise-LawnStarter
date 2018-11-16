@@ -7,7 +7,7 @@ To Install:
   <li>cd Coding-Exercise-LawnStarter</li>
   <li>npm install</li>
   <li>npm start</li>
-  <li>Go to [localhost:3000](localhost:3000)</li>
+  <li>Go to localhost:3000</li>
 </ul>
 
 Bonus Features:
