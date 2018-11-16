@@ -53,9 +53,21 @@ const Title = styled.div`
   margin-bottom: 5px;
 `;
 
+const Text = styled.div`
+  font-size: 14px;
+`;
+
 export default class Details extends Component {
   render() {
     const { category, data } = this.props.location;
+
+    let replace = "\r\n\r\n";
+    let re = new RegExp(replace, "g");
+    let opening_crawl = data.opening_crawl;
+    opening_crawl = opening_crawl.replace(/(?:\r\n|\r|\n)/g, "<br>");
+    console.log(opening_crawl);
+    // if (open)
+    // opening_crawl = opening_crawl.replace(/"Luke"/g, "Puke");
 
     this.componentWillMount = () => {
       console.log(this.props.location.data);
@@ -74,6 +86,18 @@ export default class Details extends Component {
               <Title>
                 {category === "people" ? "Details" : "Opening Crawl"}
               </Title>
+              {category === "people" ? (
+                <>
+                  <Text>Birth Year: {data.birth_year}</Text>
+                  <Text>Gender: {data.gender}</Text>
+                  <Text>Eye Color: {data.eye_color}</Text>
+                  <Text>Hair Color: {data.hair_color}</Text>
+                  <Text>Height: {data.height}</Text>
+                  <Text>Mass: {data.mass}</Text>
+                </>
+              ) : (
+                <Text>{opening_crawl}</Text>
+              )}
             </Row>
             <Row>
               <Title>{category === "people" ? "Movies" : "Characters"}</Title>
