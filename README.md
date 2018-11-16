@@ -1,28 +1,18 @@
-This project was created with [Create React App](https://github.com/facebook/create-react-app) and then ejected.
+This project was created while interviewing for a position at [LawnStarter](https://www.lawnstarter.com/)
 
-## Available Scripts
+To Install:
 
-In the project directory, you can run:
+<ul>
+  <li>git clone https://github.com/logmannn/Coding-Exercise-LawnStarter</li>
+  <li>cd Coding-Exercise-LawnStarter</li>
+  <li>npm install</li>
+  <li>npm start</li>
+  <li>Go to [localhost:3000](localhost:3000)</li>
+</ul>
 
-### `yarn start`
+Bonus Features:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
-
-### `yarn run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](#deployment) for more information.
+<ul>
+  <li>Responsive</li>
+  <li>Ability to refresh</li>
+</ul>
