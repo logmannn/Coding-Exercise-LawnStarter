@@ -120,7 +120,12 @@ class Results extends Component {
                 <SearchButton
                   className="searchButton"
                   to={{
-                    pathname: "/details/",
+                    pathname: `/details/${
+                      category === "people" ? "people" : "movies"
+                    }/${result.url
+                      .replace(/https:\/\/swapi\.co\/api\/people\//g, "")
+                      .replace(/https:\/\/swapi\.co\/api\/films\//g, "")
+                      .replace(/\//g, "")}`,
                     data: result,
                     category: category
                   }}

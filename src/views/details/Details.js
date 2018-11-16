@@ -196,7 +196,13 @@ class Details extends Component {
                         <LinkText
                           onClick={() => this.setState({ loading: true })}
                           to={{
-                            pathname: "/details",
+                            pathname: `/details/movies/${film.url
+                              .replace(
+                                /https:\/\/swapi\.co\/api\/people\//g,
+                                ""
+                              )
+                              .replace(/https:\/\/swapi\.co\/api\/films\//g, "")
+                              .replace(/\//g, "")}`,
                             data: film,
                             category: "films"
                           }}
@@ -214,7 +220,13 @@ class Details extends Component {
                         <LinkText
                           onClick={() => this.setState({ loading: true })}
                           to={{
-                            pathname: "/details",
+                            pathname: `/details/people/${character.url
+                              .replace(
+                                /https:\/\/swapi\.co\/api\/people\//g,
+                                ""
+                              )
+                              .replace(/https:\/\/swapi\.co\/api\/films\//g, "")
+                              .replace(/\//g, "")}`,
                             data: character,
                             category: "people"
                           }}
