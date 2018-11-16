@@ -67,6 +67,26 @@ const SearchButton = styled(Link)`
   text-decoration: none;
 `;
 
+const Status = styled.div`
+  height: calc(100% - 68px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+`;
+
+const StatusText = styled.div`
+  color: #c4c4c4;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  max-width: 324px;
+  width: 100%;
+`;
+
 class Results extends Component {
   render() {
     const { results, category, search, searching } = this.props;
@@ -110,6 +130,20 @@ class Results extends Component {
               </H2>
             ))}
         </ResultItems>
+        <Status>
+          {filteredResults.length === 0 && (
+            <>
+              {!searching ? (
+                <StatusText>
+                  There are zero matches. Use the form to search for People or
+                  Movies.
+                </StatusText>
+              ) : (
+                <StatusText>Searching...</StatusText>
+              )}
+            </>
+          )}
+        </Status>
       </Result>
     );
   }
