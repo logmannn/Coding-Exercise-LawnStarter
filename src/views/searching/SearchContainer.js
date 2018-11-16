@@ -11,7 +11,7 @@ const Search = styled.div`
   min-height: 230px;
 
   @media only screen and (max-width: 680px) {
-    width: 100%;
+    width: calc(100% - 62px);
 
     margin-bottom: 30px;
   }
@@ -45,6 +45,39 @@ const RadioInput = styled.input`
 const Label = styled.label`
   font-size: 14px;
   font-weight: bold;
+`;
+
+const SearchInput = styled.input`
+  max-width: 328px;
+  width: calc(100% - 22px);
+
+  height: 40px;
+
+  border-radius: 4px;
+
+  box-shadow: inset 0 1px 3px 0 rgba(132, 132, 132, 0.75);
+
+  border: solid 1px #c4c4c4;
+
+  background-color: #ffffff;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  margin-bottom: 20px;
+
+  color: #383838;
+
+  &::placeholder {
+    color: #c4c4c4;
+  }
+
+  @media only screen and (max-width: 680px) {
+    max-width: 100%;
+  }
 `;
 
 export default class SearchContainer extends Component {
@@ -83,7 +116,15 @@ export default class SearchContainer extends Component {
             <Label>Movies</Label>
           </Radio>
         </RadioContainer>
-        {this.state.category}
+        <SearchInput
+          type="text"
+          placeholder={
+            "e.g. " +
+            (category === "people"
+              ? "Chewbacca, Yoda, Boba Fett"
+              : "The Empire Strikes Back, Return of the Jedi")
+          }
+        />
       </Search>
     );
   }

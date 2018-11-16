@@ -10,7 +10,7 @@ const Result = styled.div`
   border: 1px solid black;
 
   @media only screen and (max-width: 680px) {
-    width: 100%;
+    width: calc(100% - 62px);
 
     margin-bottom: 30px;
   }
