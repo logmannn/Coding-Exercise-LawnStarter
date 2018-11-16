@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 
 const Result = styled.div`
   flex: 3;
@@ -50,7 +52,22 @@ const ResultText = styled.div`
   padding-bottom: 17px;
 `;
 
-export default class Results extends Component {
+const SearchButton = styled(Link)`
+  max-width: 134px;
+
+  height: 32px !important;
+
+  position: absolute;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+`;
+
+class Results extends Component {
   render() {
     const { results, category, search, searching } = this.props;
 
@@ -80,6 +97,16 @@ export default class Results extends Component {
                 <ResultText>
                   {category === "people" ? result.name : result.title}
                 </ResultText>
+                <SearchButton
+                  className="searchButton"
+                  to={{
+                    pathname: "/details/",
+                    data: result,
+                    category: category
+                  }}
+                >
+                  SEE DETAILS
+                </SearchButton>
               </H2>
             ))}
         </ResultItems>
@@ -87,3 +114,5 @@ export default class Results extends Component {
     );
   }
 }
+
+export default withRouter(Results);
