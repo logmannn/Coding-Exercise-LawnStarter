@@ -245,34 +245,30 @@ class Details extends Component {
                       </Alink>
                     );
                   })}
-                {category === "films" ||
-                  (category === "movies" &&
-                    extraData.map((character, i) => {
-                      return (
-                        <Alink key={i}>
-                          <LinkText
-                            onClick={() => this.setState({ loading: true })}
-                            to={{
-                              pathname: `/details/people/${character.url
-                                .replace(
-                                  /https:\/\/swapi\.co\/api\/people\//g,
-                                  ""
-                                )
-                                .replace(
-                                  /https:\/\/swapi\.co\/api\/films\//g,
-                                  ""
-                                )
-                                .replace(/\//g, "")}`,
-                              data: character,
-                              category: "people"
-                            }}
-                          >
-                            {character.name}
-                          </LinkText>
-                          ,&nbsp;
-                        </Alink>
-                      );
-                    }))}
+                {(category === "films" || category === "movies") &&
+                  extraData.map((character, i) => {
+                    return (
+                      <Alink key={i}>
+                        <LinkText
+                          onClick={() => this.setState({ loading: true })}
+                          to={{
+                            pathname: `/details/people/${character.url
+                              .replace(
+                                /https:\/\/swapi\.co\/api\/people\//g,
+                                ""
+                              )
+                              .replace(/https:\/\/swapi\.co\/api\/films\//g, "")
+                              .replace(/\//g, "")}`,
+                            data: character,
+                            category: "people"
+                          }}
+                        >
+                          {character.name}
+                        </LinkText>
+                        ,&nbsp;
+                      </Alink>
+                    );
+                  })}
               </Row>
             </Info>
             <div>
