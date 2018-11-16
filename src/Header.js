@@ -20,7 +20,6 @@ const Company = styled(Link)`
 
   font-weight: 900;
 
-  font-family: "Montserrat", sans-serif;
   font-size: 18px;
   text-decoration: none;
 `;
